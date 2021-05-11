@@ -1,11 +1,16 @@
 #!/bin/bash
 
+if [ "$#" -lt 1 ]; then
+    echo "insufficient number of arguments"
+    exit 1
+fi
+
 usage=$1
 db_username=$2
 db_password=$3
 docker_exists=$(docker container ls -a -f name=jrvs-psql | wc -l)
 
-systemctl status docker || systemctl start docker
+sudo systemctl status docker || systemctl start docker
 
 case $usage in
   create)
