@@ -31,4 +31,4 @@ SELECT
     round5(timestamp) AS ts,
     COUNT(*) AS num_data_points
 FROM host_usage
-    GROUP BY host_id, ts HAVING COUNT(*) < 5;
+    GROUP BY host_id, ts HAVING COUNT(*) < 3;
