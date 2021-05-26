@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS PUBLIC.host_info (
     hostname                VARCHAR NOT NULL,
     PRIMARY KEY (id),        -- primary key constraint
     UNIQUE(hostname),       -- unique hostname constraint
-	cpu_number				INT NOT NULL,
+	cpu_number				SMALLINT NOT NULL,
     cpu_architecture        VARCHAR NOT NULL,
     cpu_model               VARCHAR NOT NULL,
     cpu_mhz                 FLOAT NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS PUBLIC.host_usage (
 	PRIMARY KEY(id),
     "timestamp"             TIMESTAMP NOT NULL,
     host_id                 SERIAL NOT NULL,
-	memory_free             SMALLINT NOT NULL,
+	memory_free             INT NOT NULL,
 	cpu_idle                SMALLINT NOT NULL,
 	cpu_kernel              SMALLINT NOT NULL,
 	disk_io                 SMALLINT NOT NULL,
