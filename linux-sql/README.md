@@ -40,6 +40,10 @@ crontab -e
 # to list crontab jobs
 crontab -l 
 ```
+#### 6. Get the report of the hosts
+```
+psql -h psql_host -U psql_user -d psql_db -f sql/queries.sql
+```
 
 ## Implementation
 The proposed monitoring agent is implemented as follows: 
@@ -97,13 +101,22 @@ Shell scripts implemented, and their usage are as follows:
     stored in the database every minute
 
 
+* **ddl.sql**
+  
+  create host_info and host_usage tables if not exists in database:
+  
+  `psql -h psql_host -U psql_user -d psql_db -f sql/ddl.sql`
+
+
 * **queries.sql** 
     
     collection of queries to report data and answer business questions including:
     - average memory usage (percentage) over 5-minute interval for each host
     - detect host failure in case a server inserts less than three data points within 5-minute interval
-    - list of hosts, and their memory size group by CPU number 
-
+    - list of hosts, and their memory size group by CPU number
+    
+    `psql -h psql_host -U psql_user -d psql_db -f sql/queries.sql`
+      
 ### Database modeling
 Hardware specification and usage data are stored in `host_info` and `host_usage` tables, respectively.
 
@@ -133,7 +146,26 @@ cpu_kernel | small int | not null | time spent running kernel code in percentage
 disk_io | small int | not null | number of disk I/O
 disk_available | int | not null | root directory available disk in MB
 
+## Test
+Following screenshots shows how to test scripts and SQL queries. The result of running scripts and queries are also
+shown:
 
+
+![start_psql](./assets/start.png)
+
+
+![ddl](./assets/ddl.png)
+
+
+![host_info](./assets/info.png)
+
+
+![host_usage](./assets/usage.png)
+
+
+![queries](./assets/queries.png)
+
+    
 ## Improvements
 - Implement a bash script to handle hardware updates. In case of a server hardware upgrade, run the script to update 
   the corresponding server hardware specifications. 
