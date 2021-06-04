@@ -3,10 +3,11 @@ package ca.jrvs.apps.practice;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 
+// TODO: implement it after learning junit
 public class LambdaStreamImpTest extends TestCase {
 
   @BeforeEach
-  public void setUp() throws Exception {
+  public void setUp() {
     LambdaStreamImp lambdaStream = new LambdaStreamImp();
   }
 
