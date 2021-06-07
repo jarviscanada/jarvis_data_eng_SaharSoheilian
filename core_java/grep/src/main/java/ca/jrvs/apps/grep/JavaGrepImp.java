@@ -7,8 +7,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import org.apache.log4j.BasicConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,22 +59,15 @@ public class JavaGrepImp implements JavaGrep {
   @Override
   public void process() throws IOException {
 
-    List<String> lines;
     List<String> matchedLines = new ArrayList<>();
     String rootDir = getRootPath();
 
     for (File file : listFiles(rootDir)) {
-      lines = readLines(file);
-
-      for (String line : lines) {
-        if (containsPattern(line)) {
-          matchedLines.add(line);
-        }
-      }
+      readLines(file).filter(line -> containsPattern(line))
+                     .forEach(line -> matchedLines.add(line));
     }
 
     writeToFile(matchedLines);
-
   }
 
   @Override
@@ -99,16 +95,8 @@ public class JavaGrepImp implements JavaGrep {
 
 
   @Override
-  public List<String> readLines(File inputFile) throws IOException {
-
-    String line;
-    List<String> lines = new ArrayList<>();
-
-    BufferedReader bufferedReader = new BufferedReader(new FileReader(inputFile));
-    while ((line = bufferedReader.readLine()) != null) {
-      lines.add(line);
-    }
-    return lines;
+  public Stream<String> readLines(File inputFile) throws IOException {
+    return Files.lines(Paths.get(inputFile.getAbsolutePath()));
   }
 
   @Override

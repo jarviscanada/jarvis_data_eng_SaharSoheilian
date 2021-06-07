@@ -27,22 +27,18 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
       ex.printStackTrace();
     }
   }
-
+/*
   /**
    * Implement the method using Lambda and Stream API
    *
    * @param inputFile
    * @return
    * @throws IOException
-   */
+   *
   @Override
-  public List<String> readLines(File inputFile) throws IOException {
-
-    List<String> lines = Files.lines(Paths.get(inputFile.getAbsolutePath()))
-                        .collect(Collectors.toList());
-
-    return lines;
-  }
+  public Stream<String> readLines(File inputFile) throws IOException {
+    return Files.lines(Paths.get(inputFile.getAbsolutePath()));
+  }*/
 
   /**
    * Implement the method using Lambda and Stream API
