@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class JavaGrepLambdaImp extends JavaGrepImp {
 
@@ -27,18 +26,6 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
       ex.printStackTrace();
     }
   }
-/*
-  /**
-   * Implement the method using Lambda and Stream API
-   *
-   * @param inputFile
-   * @return
-   * @throws IOException
-   *
-  @Override
-  public Stream<String> readLines(File inputFile) throws IOException {
-    return Files.lines(Paths.get(inputFile.getAbsolutePath()));
-  }*/
 
   /**
    * Implement the method using Lambda and Stream API
