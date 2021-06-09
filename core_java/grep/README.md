@@ -3,7 +3,7 @@ This is a project that implements Linux `grep` usage in java. Java Grep applicat
 for a user-specified pattern in all the files of a given directory and outputs the 
 matched lines into a file. The project includes:
 
-- JavaGrep Interface: an interface which defines Java Grep app functionality.
+- JavaGrep Interface: an interface that defines Java Grep app functionality.
 - JavaGrepImp Class: a class implements JavaGrep interface.
 - JavaGrepLambdaImp: a class inherited from JavaGrepImp. Overrides `listFile()` method 
 using Lambda and Stream APIs to improve the efficiency.
@@ -36,11 +36,11 @@ java -cp target/grep-1.0-SNAPSHOT.jar ca.jrvs.apps.grep.JavaGrepImp ${regex} ${r
 
 # Implementation
 Below is the list of methods and their functionalities defined in JavaGrep Interface:
-- `void process()` Top level search workflow
+- `void process()` Top-level search workflow
 - `List<File> listFiles(String rootDir)` Traverse a given directory and return all files
 - `Stream<String> readLines(File inputFile)` Read a file and return all the lines
 - `boolean containsPattern(String line)` Check if a line contains the regex pattern passed 
-  by user
+  by the user
 - `void writeToFile(List<String> lines)` Write lines to a file 
 - `Getters` and `Setters` methods for instance variables (regex, rootPath, and outFile)
 
@@ -57,16 +57,16 @@ writeToFile(matchedLines)
 ```
 
 ## Performance Issue
-In order to prevent `OutOfMemoryError` error in case of processing a large file (in `readLines()`
-method), Lambda and Stream APIs are used instead of arrays and for-loops. This enables the
+To prevent `OutOfMemoryError` error in the case of processing a large file (in `readLines()` 
+method), Lambda and Stream APIs are used instead of arrays and for-loops. This enables the 
 application to process big files without allocating large JVM heap size and even process data
 bigger than the host physical memory size.
 
 # Test
-There are two ways for testing Java Grep app; using maven to run the app, or create a container
+There are two ways for testing Java Grep app; using maven to run the app or create a container
 from the application docker image. Below is the instruction for testing the application to 
-find the lines that contain both *Romeo* and *Juliet*. The results can be compared to 
-linux `grep` command for validation.
+find the lines that contain both *Romeo* and *Juliet*. The results can be compared to the linux
+`grep` command for validation.
 
 1. download sample file:
 ```
@@ -97,9 +97,9 @@ shrsoheilian/grep .*Romeo.*Juliet.* /data /log/grep.out
 `egrep -r .*Romeo.*Juliet.* ./data`
 
 # Deployment
-The JavaGrep app is dockerized for easier distribution. The application image tagged as
+The JavaGrep app is dockerized for easier distribution. The application image is tagged as
 **shrsoheilian/grep** and is available in hub.docker.com for download.
-Below is the steps of dockerizing Java Grep application:
+Below are the steps of dockerizing Java Grep application:
 
 1. create a docker hub account
 2. login to docker hub 
@@ -124,5 +124,6 @@ Below is the steps of dockerizing Java Grep application:
     `docker push shrsoheilian/grep`
 
 # Improvement
-- Implement `listFile()` method in a way that returns a `Stream<File>` instead of array of files
-`List<File>` and replace a for-loop in `process()` method by Lambda API to improve the efficiency.
+- Implement `listFile()` method in a way that returns a `Stream<File>` instead of an array of 
+  files `List<File>`, and replace a for-loop in `process()` method by Lambda API to improve the
+  efficiency.
