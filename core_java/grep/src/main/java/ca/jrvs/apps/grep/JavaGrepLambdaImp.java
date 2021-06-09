@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.apache.log4j.BasicConfigurator;
 
 public class JavaGrepLambdaImp extends JavaGrepImp {
 
@@ -14,6 +15,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
     if (args.length != 3) {
       throw new IllegalArgumentException("USAGE: JavaGrep regex rootPath outFile");
     }
+    BasicConfigurator.configure();
 
     JavaGrepLambdaImp javaGrepLambdaImp = new JavaGrepLambdaImp();
     javaGrepLambdaImp.setRegex(args[0]);
@@ -23,7 +25,7 @@ public class JavaGrepLambdaImp extends JavaGrepImp {
     try {
       javaGrepLambdaImp.process();
     } catch (Exception ex) {
-      ex.printStackTrace();
+      javaGrepLambdaImp.logger.error("Error on processing/writing to file", ex);
     }
   }
 
