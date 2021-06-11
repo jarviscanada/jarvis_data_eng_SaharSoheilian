@@ -6,8 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CustomerDAO extends DataAccessObject<Customer> {
+  final Logger logger = LoggerFactory.getLogger(CustomerDAO.class);
+
   private static final String INSERT = "INSERT INTO customer (first_name, last_name, email,"
       + "phone, address, city, state, zipcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -41,6 +45,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
         customer.setZipCode(rs.getString("zipcode"));
       }
     } catch (SQLException ex) {
+      logger.error("Error on finding a customer by id from database", ex);
       throw new RuntimeException(ex);
     }
 
@@ -70,6 +75,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
       customer = this.findById(dto.getId());
 
     } catch (SQLException ex) {
+      logger.error("Error on updating a customer in database", ex);
       throw new RuntimeException(ex);
     }
 
@@ -93,6 +99,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
       return this.findById(id);
 
     } catch (SQLException ex) {
+      logger.error("Error on creating a new customer in database", ex);
       throw new RuntimeException(ex);
     }
   }
@@ -104,6 +111,7 @@ public class CustomerDAO extends DataAccessObject<Customer> {
       statement.execute();
 
     } catch (SQLException ex) {
+      logger.error("Error on deleting a customer from database", ex);
       throw new RuntimeException(ex);
     }
   }

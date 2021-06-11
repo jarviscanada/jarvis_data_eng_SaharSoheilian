@@ -8,8 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OrderDAO extends DataAccessObject<Order> {
+  final Logger logger = LoggerFactory.getLogger(OrderDAO.class);
+
   private static final String GET_ONE = "SELECT"
       + "  c.first_name, c.last_name, c.email, o.order_id,"
       + "  o.creation_date, o.total_due, o.status,"
@@ -64,6 +68,7 @@ public class OrderDAO extends DataAccessObject<Order> {
       order.setOrderItems(orderItems);
 
     } catch (SQLException ex) {
+      logger.error("Error on finding an order by id from database", ex);
       throw new RuntimeException(ex);
     }
 

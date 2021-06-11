@@ -3,8 +3,11 @@ package ca.jrvs.apps.jdbc;
 import java.sql.Connection;
 import java.sql.SQLException;
 import org.apache.log4j.BasicConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JDBCExecutor {
+  static final Logger logger = LoggerFactory.getLogger(JDBCExecutor.class);
 
   public static void main(String[] args) {
     BasicConfigurator.configure();
@@ -18,8 +21,8 @@ public class JDBCExecutor {
       Order order = orderDAO.findById(1199);
       System.out.println(order);
 
-    } catch (SQLException | RuntimeException ex) {
-      dcm.logger.error("Database connection error", ex);
+    } catch (SQLException ex) {
+      logger.error("Database connection error", ex);
     }
   }
 }

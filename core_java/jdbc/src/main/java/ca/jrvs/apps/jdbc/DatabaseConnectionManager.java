@@ -4,14 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class DatabaseConnectionManager {
   private final String url;
   private final Properties properties;
-  final Logger logger = LoggerFactory.getLogger(DatabaseConnectionManager.class);
-
 
   public DatabaseConnectionManager(String host, String databaseName,
                                     String username, String password) {

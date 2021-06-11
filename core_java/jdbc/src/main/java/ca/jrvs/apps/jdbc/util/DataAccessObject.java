@@ -5,11 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class DataAccessObject <T extends DataTransferObject> {
   protected final Connection connection;
   protected final static String LAST_VAL = "SELECT last_value FROM ";
   protected final static String CUSTOMER_SEQUENCE = "hp_customer_seq";
+
+  final Logger logger = LoggerFactory.getLogger(DataAccessObject.class);
 
   public DataAccessObject (Connection connection) {
     super();
@@ -34,6 +38,7 @@ public abstract class DataAccessObject <T extends DataTransferObject> {
       return key;
 
     } catch (SQLException ex) {
+      logger.error("Error on getting last index", ex);
       throw new RuntimeException(ex);
     }
   }
