@@ -45,6 +45,31 @@ public class LinkedJList<E> implements JList<E> {
     return true;
   }
 
+  public boolean add(int index, E e){
+    if (e == null)
+      throw new NullPointerException("Invalid object to add");
+
+    if (index > size + 1)
+      throw new IndexOutOfBoundsException("Invalid index");
+
+    if (index == size) {
+      add(e);
+    } else {
+      Node<E> nextNode = findNode(index);
+      Node<E> newNode = new Node<>(e, nextNode.next, nextNode.prev);
+
+      if (nextNode.prev == null)
+        first = newNode;
+      else
+        nextNode.prev.next = newNode;
+
+      nextNode.prev = newNode;
+      size++;
+    }
+
+    return true;
+  }
+
   @Override
   public Object[] toArray() {
     Object[] obj = new Object[size];
