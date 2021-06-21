@@ -1,0 +1,146 @@
+{
+  "education": [
+    {
+      "awards_achievements": [
+        "GPA: 3.39/4.0"
+      ],
+      "degree": "Bachelor of Computer Engineering",
+      "department": "Computer Engineering",
+      "duration": "2006-2010",
+      "school_name": "University of Isfahan, Isfahan, Iran"
+    },
+    {
+      "awards_achievements": [
+        "GPA 3.72/4.0"
+      ],
+      "degree": "Master of Computer Engineering",
+      "department": "Electrical and Computer Engineering",
+      "duration": "2011-2014",
+      "school_name": "Shahid Beheshti university, Tehran, Iran"
+    }
+  ],
+  "github_repo_root_url": "https://github.com/jarviscanada/jarvis_data_eng_SaharSoheilian",
+  "highlighted_projects": [
+    {
+      "description": "Proposed a new image aggregation scheme in WVSNs. Designed a two-tier network architecture in which camera-equipped sensors with less energy were located in the lower tier to communicate with the environment. In this scheme, clustering, as well as P2P frameworks, were used and the data including the number and types of objects were extracted from the images (using the image filtering and processing methods) in a distributed in-network processing structure. Finally, the fused scalar data was sent back to the base station. The results showed this new scheme can reduce the network traffic and communication energy consumption and hence, increase overall network lifetime.",
+      "name": "A new image aggregation solution for event detection in wireless visual sensor networks (WVSNs)"
+    }
+  ],
+  "jarvis_projects": [
+    {
+      "description": "Had a Linux cluster of nodes/servers running CentOS 7 and internally connected through a switch. The project aimed to provide a monitoring agent which records hardware specifications of cluster nodes and monitors their resource usage in real-time. Used by Linux Cluster Administration (LCA) team to have a better insight into servers, and their usage to meet the business requirements. Technologies deployed in the project: Bash scripting, SQL, Git, GCP, and Docker.",
+      "git_url": "/linux_sql",
+      "name": "Cluster Monitor"
+    },
+    {
+      "description": [
+        "Twitter App:",
+        "JDBC App: Designed a Java application that implements CRUD (create, read, update, delete) operations using JDBC API and DAO design pattern to access and manipulate data in a relational database, Postgres. Technologies deployed in this project: JDBC, PSQL, Maven, slf4j, Docker, and Git.",
+        "Grep App: Developed a project that implements Linux grep usage in java. Java Grep application searches for a user-specified pattern in all the files of a given directory and outputs the matched lines into a file. Technologies deployed in this project: Core Java, Stream APIs, Lambda, slf4j logging API, Maven, Shade plugin, Docker, and Git."
+      ],
+      "git_url": "/core_java",
+      "name": "Core Java Apps"
+    },
+    {
+      "description": "",
+      "git_url": "/springboot",
+      "name": "Springboot App"
+    },
+    {
+      "description": "",
+      "git_url": "/python_data_anlytics",
+      "name": "Python Data Analytics"
+    },
+    {
+      "description": "",
+      "git_url": "/hadoop",
+      "name": "Hadoop"
+    },
+    {
+      "description": "",
+      "git_url": "/spark",
+      "name": "Spark"
+    },
+    {
+      "description": "",
+      "git_url": "/cloud_devops",
+      "name": "Cloud/DevOps"
+    }
+  ],
+  "name": "Sahar Soheilian Esfahani",
+  "others": [
+    {
+      "bullets": [
+        "AZ-900: Microsoft Azure Fundamentals (2021)",
+        "Udemy Python Django Dev To Deployment (2020)"
+      ],
+      "title": "Certificates"
+    },
+    {
+      "bullets": [
+        "Yoga/Swimming",
+        "Playing Santoor (a traditional musical instrument)",
+        "Camping",
+        "Pottery"
+      ],
+      "title": "Activities/Hobbies"
+    }
+  ],
+  "professional_experience": [
+    {
+      "company": "Jarvis",
+      "description": "Worked on different projects and developed several applications by deploying technologies including Java, Bash scripting, Docker, Postgres, Git, Maven: 1. Developed a monitoring agent for Linux cluster administrators using bash scripting to record the hardware specifications of each node and monitor node resource usages in real time. 2. Implemented a Java app that imitates Linux grep command using Lambda and Stream APIs to allow users to search matching strings from files. 3. Designed a Java application that read, write, update, and deletes (CURD) data against an RDBMS database using JDBC.",
+      "duration": "2021-present",
+      "title": "Software Developer"
+    },
+    {
+      "company": "Bright Bee Technology Center Inc.",
+      "description": "Implemented robust and performant backend components and RESTful APIs using Python, Django, MySQL for a smart system designed for engineers and non-engineers, enabling them to make use of their data for their business growth by deploying simple and advanced modeling approaches in ML and AI.",
+      "duration": "2020-present",
+      "title": "Backend Developer"
+    },
+    {
+      "company": "Qatar University",
+      "description": "Collaborated with a research group on a project on the development of interactive blood flow simulation pipeline. Designed a visualization platform using Qt for the blood flow simulation and modeling pipeline to provide an interactive environment for the users. Collaborated on developing a GPU based rendering kernel to visualize HemeLB (a fluid solver written in C++) simulation results in real time.",
+      "duration": "2019-2020",
+      "title": "Research Assistant"
+    },
+    {
+      "company": "Payam Mashregh Company",
+      "description": "Analyzed, evaluated, and documented user data and technical requirements to design and develop web forms, business workflows, and databases (the whole set of entities, relations, constraints, indexes, views, etc.). Supervised a team including technical consultants and workflow/web developers. Assessed and tested workflows on local and customer servers, identified bugs, and improved system features according to customer requirements quickly and effectively",
+      "duration": "2013-2018",
+      "title": "Project Manager and Database Designer"
+    }
+  ],
+  "skills": {
+    "competent": [
+      "Python",
+      "Django",
+      "Azure/GCP",
+      "C++",
+      "Microsoft Access",
+      "Microsoft Visio",
+      "Qt",
+      "Matlab"
+    ],
+    "familiar": [
+      "React",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Microsoft Windows Server"
+    ],
+    "proficient": [
+      "Java",
+      "Linux/Bash",
+      "RDBMS/SQL",
+      "Agile/Scrum",
+      "Git",
+      "BPMS",
+      "Docker",
+      "REST APIs",
+      "Postman"
+    ]
+  },
+  "summary": "Completed an MSc in computer engineering at Shahid Beheshti University in Iran. Performance-driven and result-oriented developer with more than 5 years of experience in database design and project management in automation projects (BPMS). Experienced in leading engineering teams to achieve concrete goals on a strict deadline. Worked as a backend developer and implemeneted RESTful APIs in Django to support the platform's frontend and pre-process data. Skilled in Java, SQL, Python, Django, and docker. Seeking to leverage my expertise and knowledge to work on challenging problems and enhance product capabilities."
+}

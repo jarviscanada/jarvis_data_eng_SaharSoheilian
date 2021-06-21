@@ -48,14 +48,28 @@ public class JBSTree<E> implements JTree<E> {
 
     if (root == null)
       root = newNode;
-    else {
-      Node<E> parent = root;
-      if (comparator.compare(newNode.value, root.value) < 0) {
+    else
+      insertNode(root, newNode);
 
-      }
+    return object;
+  }
+
+  private void insertNode(Node<E> current, Node<E> newNode) {
+    // insert at left subtree
+    if (comparator.compare(newNode.value, current.value) < 0) {
+      if (current.left == null) {
+        current.left = newNode;
+        newNode.parent = current;
+      } else
+        insertNode(current.left, newNode);
+
+    } else { //insert at right subtree
+      if (current.right == null) {
+        current.right = newNode;
+        newNode.parent = current;
+      } else
+        insertNode(current.right, newNode);
     }
-        return object;
-
   }
 
   /**
@@ -66,6 +80,16 @@ public class JBSTree<E> implements JTree<E> {
    */
   @Override
   public E search(E object) {
+    Node<E> current = root;
+
+    while(current != null) {
+      if (comparator.compare(object, current.value) > 0)
+        current = current.right;
+      else if(comparator.compare(object, current.value) < 0)
+        current = current.left;
+      else
+        return object;
+    }
     return null;
   }
 
@@ -78,8 +102,81 @@ public class JBSTree<E> implements JTree<E> {
    */
   @Override
   public E remove(E object) {
-    return null;
+    if (search(object) == null)
+      throw new IllegalArgumentException("Object doesn't exist");
+
+    // find the node
+    Node<E> node = root;
+    boolean isLeftChild = false;
+
+    while (comparator.compare(node.value, object) != 0) {
+      if (comparator.compare(node.value, object) < 0) {
+        node = node.left;
+        isLeftChild = true;
+      }
+      else {
+        node = node.right;
+        isLeftChild = false;
+      }
+    }
+
+    // find out if the node has no, one, or two children
+    if (node.left == null && node.right == null) {
+      if (node == root)
+        root = null;
+      else {
+        if (isLeftChild)
+          node.parent.left = null;
+        else
+          node.parent.right = null;
+        node.parent = null;
+      }
+
+    } else if (node.right == null) {
+      if (node == root)
+        root = node.left;
+      else {
+        if (isLeftChild)
+          node.parent.left = node.left;
+        else
+          node.parent.right = node.left;
+
+        node.parent = null;
+        node.left = null;
+      }
+
+    } else if (node.left == null) {
+      if (node == root)
+        root = node.right;
+      else {
+        if (isLeftChild)
+          node.parent.left = node.right;
+        else
+          node.parent.right = node.right;
+
+        node.parent = null;
+        node.right = null;
+      }
+
+    } else {
+
+    }
+
+    return object;
   }
+
+  private Node<E> getNode(Node<E> current, E object) {
+    // we know the object exists in the tree
+    int cmp = comparator.compare(current.value, object);
+
+    if (cmp == 0)
+      return current;
+    else if (cmp < 0)
+      return getNode(current.left, object);
+    else
+      return getNode(current.right, object);
+  }
+
 
   /**
    * traverse the tree recursively
