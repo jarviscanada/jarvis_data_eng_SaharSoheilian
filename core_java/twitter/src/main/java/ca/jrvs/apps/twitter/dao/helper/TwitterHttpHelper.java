@@ -8,6 +8,7 @@ import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -66,35 +67,12 @@ public class TwitterHttpHelper implements HttpHelper {
     }
 
     else if (method == HttpMethod.DELETE) {
-      return null;
-    }
-
-    else if(method == HttpMethod.PATCH) {
-      return null;
+      HttpDelete request = new HttpDelete(uri);
+      consumer.sign(request);
+      return httpClient.execute(request);
     }
 
     else
       throw new IllegalArgumentException("Unknown HTTP method: " + method);
-  }
-
-  public static void main(String[] args) throws Exception {
-    // get twitter api secret keys
-    String consumerKey = System.getenv("consumerKey");
-    String consumerSecret = System.getenv("consumerSecret");
-    String accessToken = System.getenv("accessToken");
-    String tokenSecret = System.getenv("tokenSecret");
-
-    TwitterHttpHelper twitterHttpHelper = new TwitterHttpHelper(consumerKey, consumerSecret,
-        accessToken, tokenSecret);
-
-    URI post_uri = new URI("https://api.twitter.com/1.1/statuses/update.json?status=tweet_from_HttpHelper");
-    HttpResponse postResponse = twitterHttpHelper.httpPost(post_uri);
-
-    System.out.println(EntityUtils.toString(postResponse.getEntity()));
-
-    URI get_uri = new URI("https://api.twitter.com/2/users/by/username/Soheil50119034");
-    HttpResponse getResponse = twitterHttpHelper.httpGet(get_uri);
-
-    System.out.println(EntityUtils.toString(getResponse.getEntity()));
   }
 }
