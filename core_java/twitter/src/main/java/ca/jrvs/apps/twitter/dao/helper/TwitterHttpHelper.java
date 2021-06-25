@@ -2,18 +2,15 @@ package ca.jrvs.apps.twitter.dao.helper;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import oauth.signpost.exception.OAuthException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 import org.springframework.http.HttpMethod;
 
 public class TwitterHttpHelper implements HttpHelper {
@@ -62,12 +59,6 @@ public class TwitterHttpHelper implements HttpHelper {
       HttpPost request = new HttpPost(uri);
       if (stringEntity != null)
         request.setEntity(stringEntity);
-      consumer.sign(request);
-      return httpClient.execute(request);
-    }
-
-    else if (method == HttpMethod.DELETE) {
-      HttpDelete request = new HttpDelete(uri);
       consumer.sign(request);
       return httpClient.execute(request);
     }

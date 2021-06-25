@@ -1,6 +1,5 @@
 package ca.jrvs.apps.twitter.dao.helper;
 
-import static org.junit.Assert.*;
 
 import java.net.URI;
 import org.apache.http.HttpResponse;
@@ -10,7 +9,7 @@ import org.junit.Test;
 
 public class TwitterHttpHelperTest {
 
-  TwitterHttpHelper twitterHttpHelper;
+  private TwitterHttpHelper twitterHttpHelper;
 
   @Before
   public void setUp() throws Exception {
@@ -26,8 +25,8 @@ public class TwitterHttpHelperTest {
 
   @Test
   public void httpPost() throws Exception {
-    URI post_uri = new URI("https://api.twitter.com/1.1/statuses/update.json?status=tweet_from_HttpHelper");
-    HttpResponse postResponse = twitterHttpHelper.httpPost(post_uri);
+    URI postUri = new URI("https://api.twitter.com/1.1/statuses/update.json?status=sahar+text+coord&lat=1.0&long=-1.0");
+    HttpResponse postResponse = twitterHttpHelper.httpPost(postUri);
 
     System.out.println("Post result: ");
     System.out.println(EntityUtils.toString(postResponse.getEntity()));
@@ -35,8 +34,8 @@ public class TwitterHttpHelperTest {
 
   @Test
   public void httpGet() throws Exception {
-    URI get_uri = new URI("https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=Soheil50119034");
-    HttpResponse getResponse = twitterHttpHelper.httpGet(get_uri);
+    URI getUri = new URI("https://api.twitter.com/1.1/statuses/show.json?id=1408154412053368832");
+    HttpResponse getResponse = twitterHttpHelper.httpGet(getUri);
 
     System.out.println("Get result: ");
     System.out.println(EntityUtils.toString(getResponse.getEntity()));
