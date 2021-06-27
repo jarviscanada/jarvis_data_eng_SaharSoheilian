@@ -28,8 +28,8 @@ public class TwitterDaoIntTest {
   @Test
   public void create() throws Exception {
     String hashtag = "#tag";
-    String text = "@mention000 this is text @mention11 and #tag0 this is hash tag1 " + hashtag +
-        System.currentTimeMillis();
+    String text = "@mention this is text @mention and this is hashtag " + hashtag +
+        " " + System.currentTimeMillis();
 
     Double lon = -1d;
     Double lat = 1d;
@@ -46,7 +46,7 @@ public class TwitterDaoIntTest {
     assertEquals(lon, postedTweet.getCoordinates().getCoordinates().get(0));
     assertEquals(lat, postedTweet.getCoordinates().getCoordinates().get(1));
 
-    assertTrue(hashtag.contains(tweet.getEntities().getHashtags().get(1).getText()));
+    assertTrue(hashtag.contains(tweet.getEntities().getHashtags().get(0).getText()));
   }
 
   @Test

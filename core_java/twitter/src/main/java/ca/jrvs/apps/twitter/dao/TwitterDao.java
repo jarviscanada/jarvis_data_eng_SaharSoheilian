@@ -1,10 +1,8 @@
 package ca.jrvs.apps.twitter.dao;
 
 import ca.jrvs.apps.twitter.dao.helper.HttpHelper;
-import ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.util.JsonUtil;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -140,7 +138,7 @@ public class TwitterDao implements CrdDao<Tweet, String> {
       throw new RuntimeException("Unable to convert the response entity to string", ex);
     }
 
-    Tweet tweet = null;
+    Tweet tweet;
     try {
       tweet = JsonUtil.toObjectFromJson(jsonString, Tweet.class);
     } catch (IOException ex) {
