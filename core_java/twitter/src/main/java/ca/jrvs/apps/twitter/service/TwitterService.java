@@ -52,11 +52,16 @@ public class TwitterService implements Service {
 
   @Override
   public Tweet showTweet(String id, String[] fields) {
-
+    Tweet tweet;
     validateTweetId(id);
-    validateTweetFields(fields);
 
-    return setNullFields((Tweet) dao.findById(id), fields);
+    if (fields != null) {
+      validateTweetFields(fields);
+      tweet = setNullFields((Tweet) dao.findById(id), fields);
+    } else
+      tweet = (Tweet) dao.findById(id);
+
+    return tweet;
   }
 
   private void validateTweetFields(String[] fields) {
