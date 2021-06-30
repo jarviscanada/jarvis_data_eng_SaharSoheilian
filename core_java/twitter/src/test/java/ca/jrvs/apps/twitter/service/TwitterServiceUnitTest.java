@@ -1,7 +1,6 @@
 package ca.jrvs.apps.twitter.service;
 
 import static org.mockito.Mockito.when;
-
 import ca.jrvs.apps.twitter.dao.CrdDao;
 import ca.jrvs.apps.twitter.model.Tweet;
 import ca.jrvs.apps.twitter.util.TweetUtil;
