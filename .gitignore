@@ -8,3 +8,4 @@ target/
 .idea/
 .eclipse
 intellij-java-google-style.xml
+dependency-reduced-pom.xml
