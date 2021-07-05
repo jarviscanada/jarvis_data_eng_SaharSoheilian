@@ -11,8 +11,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TwitterHttpHelper implements HttpHelper {
 
   // dependencies are specified as private member variables
@@ -25,6 +28,21 @@ public class TwitterHttpHelper implements HttpHelper {
     consumer.setTokenWithSecret(accessToken, tokenSecret);
 
     httpClient = new DefaultHttpClient(); // HttpClientBuilder.create().build();
+  }
+
+  /**
+   * Default constructor
+   */
+  public TwitterHttpHelper() {
+    String consumerKey = System.getenv("consumerKey");
+    String consumerSecret = System.getenv("consumerSecret");
+    String accessToken = System.getenv("accessToken");
+    String tokenSecret = System.getenv("tokenSecret");
+
+    consumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
+    consumer.setTokenWithSecret(accessToken, tokenSecret);
+
+    httpClient = new DefaultHttpClient();
   }
 
   @Override
