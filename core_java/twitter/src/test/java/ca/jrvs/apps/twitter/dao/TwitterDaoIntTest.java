@@ -51,7 +51,7 @@ public class TwitterDaoIntTest {
 
   @Test
   public void findById() throws Exception {
-    String text = "Tweet for testing findById:)";
+    String text = "Tweet for testing findById:)" + System.currentTimeMillis();
     Tweet tweet = twitterDao.create(TweetUtil.buildTweet(text, null, null));
 
     Tweet findTweet = twitterDao.findById(Long.toString(tweet.getId()));
