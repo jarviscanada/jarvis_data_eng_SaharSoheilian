@@ -1,20 +1,32 @@
 package ca.jrvs.practice.codingChallenge;
 
+/**
+ * https://www.notion.so/jarvisdev/String-to-Integer-atoi-00722fb6989042bbadb3308522f65739
+ */
 public class StringToInteger {
 
+  /**
+   * Big-O: O(n) where n is the input length -> while-loop
+   *
+   * @param s
+   * @return
+   */
   public int strToIntParsing(String s) {
-    int intValue;
-    s = s.trim();
-
-    if (s.charAt(0) != '-' && s.charAt(0) != '+' && !Character.isDigit(s.charAt(0)))
+    if (s.isEmpty())
       return 0;
 
-    int i = 0;
-    if (s.charAt(0) == '-' || s.charAt(0) == '+') {
-      if (s.length() == 1)
+    s = s.trim();
+    char firstChar = s.charAt(0);
+
+    if (!Character.isDigit(firstChar)) {
+      if (s.length() == 1 || (firstChar != '-' && firstChar != '+'))
         return 0;
-      i = 1;
     }
+
+    int i = 0;
+    if (firstChar == '-' || firstChar == '+')
+      i = 1;
+
 
     while (i < s.length()) {
       if (!Character.isDigit(s.charAt(i)))
@@ -22,50 +34,65 @@ public class StringToInteger {
       i++;
     }
 
-    intValue = Integer.parseInt(s.substring(0, i));
+    long result = Long.parseLong(s.substring(0, i));
 
-    return intValue;
+    if (result > Integer.MAX_VALUE)
+      return Integer.MAX_VALUE;
+    else if (result < Integer.MIN_VALUE)
+      return Integer.MIN_VALUE;
+    else
+      return (int) result;
   }
 
   /**
+   * Big-O: O(n) where n is the input length -> while-loop
    *
    * @param s
    * @return
    */
   public int strToIntMod(String s) {
-    int intValue = 0, factor = 1;
-    boolean negative = false;
-    s = s.trim();
-
-    if (s.charAt(0) != '-' && s.charAt(0) != '+' && !Character.isDigit(s.charAt(0)))
+    if (s.isEmpty())
       return 0;
 
-    int startIndex = 0;
-    if (s.charAt(0) == '-' || s.charAt(0) == '+') {
-      if (s.length() == 1)
+    s = s.trim();
+    char firstChar = s.charAt(0);
+
+    if (!Character.isDigit(firstChar)) {
+      if (s.length() == 1 || (firstChar != '-' && firstChar != '+'))
         return 0;
-      if (s.charAt(0) == '-')
+    }
+
+    long result = 0;
+    boolean negative = false;
+    int i = 0, j;
+
+    if (firstChar == '-' || firstChar == '+') {
+      i = 1;
+      if (firstChar == '-')
         negative = true;
-      startIndex = 1;
     }
 
-    int endIndex = startIndex;
-    while (endIndex < s.length()) {
-      if (!Character.isDigit(s.charAt(endIndex)))
+    j = i;
+    while (j < s.length()) {
+      if (!Character.isDigit(s.charAt(j)))
         break;
-      endIndex++;
+      j++;
     }
 
-    while (startIndex < endIndex) {
-      intValue *= 10;
-      intValue += (s.charAt(startIndex) - '0');
-      startIndex++;
+    while (i < j) {
+      result *= 10;
+      result += (s.charAt(i) - '0');
+      i++;
     }
 
     if (negative)
-      intValue = -intValue;
+      result = -result;
 
-
-    return intValue;
+    if (result > Integer.MAX_VALUE)
+      return Integer.MAX_VALUE;
+    else if (result < Integer.MIN_VALUE)
+      return Integer.MIN_VALUE;
+    else
+      return (int) result;
   }
 }
