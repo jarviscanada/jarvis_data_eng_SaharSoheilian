@@ -176,4 +176,4 @@ Below are the steps of dockerizing this application:
 
 
 # Improvements
-- Improve the business login and data validation based on Twitter REST API requirements and limitations
+- Improve the business logic and data validation based on Twitter REST API requirements and limitations
