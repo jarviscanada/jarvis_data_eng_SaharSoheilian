@@ -1,19 +1,16 @@
 package ca.jrvs.apps.trading.dao;
 
-import static ca.jrvs.apps.trading.util.JsonUtil.toJson;
-import static ca.jrvs.apps.trading.util.JsonUtil.toObjectFromJson;
-
 import ca.jrvs.apps.trading.model.config.MarketDataConfig;
 import ca.jrvs.apps.trading.model.domain.IexQuote;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import org.apache.http.HttpRequest;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -21,7 +18,6 @@ import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -79,7 +75,7 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
    */
   @Override
   public List<IexQuote> findAllById(Iterable<String> tickers) {
-    List<IexQuote> iexQuotes = new ArrayList<>();
+    List<IexQuote> iexQuoteList = new ArrayList<>();
     StringBuilder symbols = new StringBuilder();
 
     for (String ticker : tickers)
@@ -91,23 +87,28 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
         .orElseThrow(()->new IllegalArgumentException("Invalid tickers"));
 
     // Array of JSON documents
-    JSONArray iexQuotesJson = new JSONArray(response);
+    JSONObject iexQuotesJson = new JSONObject(response);
 
-    if (iexQuotesJson.length() == 0)
+    if (iexQuotesJson.length() != Lists.newArrayList(tickers).size()) //includes iexQuotesJson.length()==0
       throw new IllegalArgumentException("Invalid ticker");
 
-    for (int i = 0; i < iexQuotesJson.length(); i++) {
+    ObjectMapper mapper = new ObjectMapper();
+    IexQuote quote;
+
+    for (String ticker : tickers) {
+      JSONObject quoteJSON = iexQuotesJson.getJSONObject(ticker).getJSONObject("quote");
+
       try {
-        iexQuotes.add(
-            toObjectFromJson(toJson(iexQuotesJson.get(i), true, false)
-            , IexQuote.class));
+        quote = mapper.readValue(String.valueOf(quoteJSON), new TypeReference<IexQuote>(){});
       } catch (IOException ex) {
         logger.error("Error on parsing response", ex);
         throw new DataRetrievalFailureException("Error on parsing response", ex);
       }
+
+      iexQuoteList.add(quote);
     }
 
-    return iexQuotes;
+    return iexQuoteList;
   }
 
   /**
@@ -126,8 +127,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     try {
       response = httpClient.execute(request);
     } catch (IOException ex) {
-      logger.error("Error on http execution", ex);
-      throw new DataRetrievalFailureException("Http request failed");
+      logger.error("Error on http get", ex);
+      throw new DataRetrievalFailureException("Http Get failed");
     }
 
     //TODO or check if the status is 404
