@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
@@ -18,6 +17,7 @@ import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,6 +81,8 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     for (String ticker : tickers)
       symbols.append(ticker).append(',');
 
+    symbols.deleteCharAt(symbols.length() - 1);
+
     String url = String.format(IEX_BATCH_URL, symbols);
 
     String response = executeHttpGet(url)
@@ -90,22 +92,28 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
     JSONObject iexQuotesJson = new JSONObject(response);
 
     if (iexQuotesJson.length() != Lists.newArrayList(tickers).size()) //includes iexQuotesJson.length()==0
-      throw new IllegalArgumentException("Invalid ticker");
+      throw new IllegalArgumentException("Invalid ticker(s)");
 
     ObjectMapper mapper = new ObjectMapper();
-    IexQuote quote;
+    IexQuote iexQuote;
 
     for (String ticker : tickers) {
-      JSONObject quoteJSON = iexQuotesJson.getJSONObject(ticker).getJSONObject("quote");
+      JSONObject quoteJSON = new JSONObject();
 
       try {
-        quote = mapper.readValue(String.valueOf(quoteJSON), new TypeReference<IexQuote>(){});
+        quoteJSON = iexQuotesJson.getJSONObject(ticker.toUpperCase()).getJSONObject("quote");
+      } catch (JSONException ex) {
+        throw new IllegalArgumentException("Invalid quote(s)", ex);
+      }
+
+      try {
+        iexQuote = mapper.readValue(String.valueOf(quoteJSON), new TypeReference<IexQuote>(){});
       } catch (IOException ex) {
         logger.error("Error on parsing response", ex);
         throw new DataRetrievalFailureException("Error on parsing response", ex);
       }
 
-      iexQuoteList.add(quote);
+      iexQuoteList.add(iexQuote);
     }
 
     return iexQuoteList;
@@ -131,7 +139,6 @@ public class MarketDataDao implements CrudRepository<IexQuote, String> {
       throw new DataRetrievalFailureException("Http Get failed");
     }
 
-    //TODO or check if the status is 404
     if (response.getStatusLine().getStatusCode() != 200)
       return Optional.empty();
 
