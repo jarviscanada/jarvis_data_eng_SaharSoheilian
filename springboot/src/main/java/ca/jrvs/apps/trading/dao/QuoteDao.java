@@ -92,22 +92,18 @@ public class QuoteDao implements CrudRepository<Quote, String> {
    */
   @Override
   public Optional<Quote> findById(String ticker) {
-    Quote quote;
+    Optional<Quote> quote = Optional.empty();
     String selectSql = "SELECT * FROM " + TABLE_NAME + " WHERE " + ID_COLUMN_NAME
         + "=?";
 
     try {
-      quote = jdbcTemplate.queryForObject(selectSql,
-          BeanPropertyRowMapper.newInstance(Quote.class), ticker);
+      quote = Optional.ofNullable(jdbcTemplate.queryForObject(selectSql,
+          BeanPropertyRowMapper.newInstance(Quote.class), ticker));
     } catch (EmptyResultDataAccessException ex) {
-      logger.debug("Can't find trader: " + ticker, ex);
-      return Optional.empty();
+      logger.debug("Can't find ticker: " + ticker, ex);
     }
 
-    if (quote == null)
-      return Optional.empty();
-
-    return Optional.of(quote);
+    return quote;
   }
 
   @Override
@@ -131,7 +127,7 @@ public class QuoteDao implements CrudRepository<Quote, String> {
   public long count() {
     String selectSql = "SELECT COUNT(*) FROM " + TABLE_NAME;
 
-    return jdbcTemplate.queryForObject(selectSql, Integer.class);
+    return jdbcTemplate.queryForObject(selectSql, Long.class);
   }
 
   @Override
