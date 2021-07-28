@@ -1,5 +1,10 @@
 package ca.jrvs.apps.trading.model.domain;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -177,8 +182,11 @@ public class IexQuote {
   private Long lastTradeTime;
   @JsonProperty("isUSMarketOpen")
   private Boolean isUSMarketOpen;
-//  @JsonIgnore
-//  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
+
+  @JsonIgnore
+  private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+
 
   @JsonProperty("symbol")
   public String getSymbol() {
@@ -730,14 +738,22 @@ public class IexQuote {
     this.isUSMarketOpen = isUSMarketOpen;
   }
 
-//  @JsonAnyGetter
-//  public Map<String, Object> getAdditionalProperties() {
-//    return this.additionalProperties;
-//  }
-//
-//  @JsonAnySetter
-//  public void setAdditionalProperty(String name, Object value) {
-//    this.additionalProperties.put(name, value);
-//  }
+  public Boolean getUSMarketOpen() {
+    return isUSMarketOpen;
+  }
+
+  public void setUSMarketOpen(Boolean USMarketOpen) {
+    isUSMarketOpen = USMarketOpen;
+  }
+
+  @JsonAnyGetter
+  public Map<String, Object> getAdditionalProperties() {
+    return this.additionalProperties;
+  }
+
+  @JsonAnySetter
+  public void setAdditionalProperty(String name, Object value) {
+    this.additionalProperties.put(name, value);
+  }
 
 }
