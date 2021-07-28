@@ -43,7 +43,8 @@ public class QuoteDaoIntTest {
 
   @After
   public void deleteOne() {
-    quoteDao.deleteById(savedQuote.getId());
+    quoteDao.findAll()
+        .forEach(quote -> quoteDao.deleteById(quote.getId()));
   }
 
   @Test
