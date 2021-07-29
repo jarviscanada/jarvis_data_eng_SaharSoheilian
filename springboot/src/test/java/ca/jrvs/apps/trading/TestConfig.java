@@ -28,7 +28,7 @@ public class TestConfig {
   public DataSource dataSource() {
     System.out.println("Creating Apache DataSource");
 
-    String url = System.getenv("PSQL_URL") + "_testing";
+    String url = System.getenv("PSQL_URL") + "_test";
     String user = System.getenv("PSQL_USER");
     String password = System.getenv("PSQL_PASSWORD");
 
