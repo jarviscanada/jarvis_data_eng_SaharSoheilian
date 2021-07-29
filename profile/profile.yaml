@@ -5,7 +5,7 @@ github_repo_root_url: https://github.com/jarviscanada/jarvis_data_eng_SaharSohei
 
 # Introduce yourself, your academic and professional background.
 # What excites you about the software industry and your passion. At least 80 words
-summary: I have completed an MSc in computer engineering at Shahid Beheshti University in Iran. I am a performance-driven and result-oriented developer with more than 5 years of experience in designing databases and project management in automation projects (BPMS). I have expertise in leading engineering teams to achieve concrete goals on a strict deadline. I also have one year of working experience in developing backend components and implementing RESTful APIs in Django to support the platform's frontend. Recently, I joined Jarvis as a software developer and collaborated on various projects including but not limited to developing a cluster monitoring agent, Java grep app and Twitter app. I have strong skills in Java, SQL, Python, Django, docker and also working knowledge of UI development and frontend technologies. I am seeking to leverage my expertise and knowledge to work on challenging problems and enhance product capabilities.
+summary: I have completed an MSc in computer engineering at Shahid Beheshti University in Iran. I am a performance-driven and result-oriented developer with more than 5 years of experience in designing databases and project management in automation projects (BPMS). I have expertise in leading engineering teams to achieve concrete goals on a strict deadline. I also have one year of working experience in developing backend components and implementing RESTful APIs in Django to support the platform's frontend. Recently, I joined Jarvis as a software developer and collaborated on various projects including but not limited to developing a cluster monitoring agent, Java grep app, Twitter app and a trading app using Springboot framework. I have strong skills in Java, SQL, Python, Django, docker and also working knowledge of UI development and frontend technologies. I am seeking to leverage my expertise and knowledge to work on challenging problems and enhance product capabilities.
 
 # Group your skills by level.
 # Your skills can be anything software related (e.g. language, frameworks, methodologies, software, etc.).
@@ -14,7 +14,7 @@ skills:
   proficient:
     - Java
     - Linux/Bash
-    - RDBMS/SQL
+    - RDBMS/SQL (MS-SQL/mySQL/Postgres)
     - Agile/Scrum
     - Git
     - BPMS
@@ -25,6 +25,7 @@ skills:
   competent:
     - Python
     - Django
+    - Springboot
     - Azure/GCP
     - C++
     - Microsoft Access
@@ -54,7 +55,7 @@ jarvis_projects:
       - "Grep App: Developed a project that implements Linux grep usage in java. Java Grep application searches for a user-specified pattern in all the files of a given directory and outputs the matched lines into a file. The application is implemented in Java. Used Stream APIs and Lambda to improve the performance and enable processing of big files. Used docker to deploy the application, and Github to manage the source code."
   - name: "Springboot App"
     git_url: "/springboot"
-    description: ""
+    description: "Developed a Java application "
   - name: "Python Data Analytics"
     git_url: "/python_data_anlytics"
     description: ""
@@ -90,7 +91,7 @@ professional_experience:
     description: "Worked on different projects and developed several applications by deploying technologies including Java, Bash scripting, Postgres, Docker, Git, Maven, slf4j, JUnit4, Mockito, Stream APIs, REST APIs, SpringBoot, and Spring framework: 1) Developed a monitoring agent for Linux cluster administrators using bash scripting to record the hardware specifications of each node and monitor node resource usages in real-time. 2) Implemented a Java app that imitates Linux grep command using Lambda and Stream APIs to allow users to search matching strings from files. 3) Designed a Java application that read, write, update, and deletes (CURD) data against an RDBMS database using JDBC. 4) Developed a Twitter application that allows users to post, find and delete tweets using Twitter REST APIs."
   - title: "Backend Developer"
     company: "Bright Bee Technology Center Inc."
-    duration: "2020-present"
+    duration: "2020-2021"
     description: " Implemented robust and performant backend components and RESTful APIs using Python, Django, and MySQL for a smart system designed for engineers and non-engineers, enabling them to make use of their data for their business growth by deploying simple and advanced modeling approaches in ML and AI."
   - title: "Research Assistant"
     company: "Qatar University"
