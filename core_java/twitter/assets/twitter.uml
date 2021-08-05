@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/centos/dev/jarvis_data_eng_Sahar/core_java/twitter/src/main/java/ca/jrvs/apps/twitter</OriginalElement>
+  <nodes>
+    <node x="0.0" y="163.5">ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper</node>
+    <node x="385.26904761904774" y="0.0">ca.jrvs.apps.twitter.dao.CrdDao</node>
+    <node x="787.25" y="152.0">ca.jrvs.apps.twitter.controller.TwitterController</node>
+    <node x="119.94761904761901" y="11.5">ca.jrvs.apps.twitter.dao.helper.HttpHelper</node>
+    <node x="528.0714285714284" y="326.0">ca.jrvs.apps.twitter.controller.TwitterCLIApp</node>
+    <node x="251.0" y="152.0">ca.jrvs.apps.twitter.dao.TwitterDao</node>
+    <node x="636.1142857142858" y="0.0">ca.jrvs.apps.twitter.service.Service</node>
+    <node x="482.0" y="152.0">ca.jrvs.apps.twitter.service.TwitterService</node>
+    <node x="939.1142857142858" y="0.0">ca.jrvs.apps.twitter.controller.Controller</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterController" target="ca.jrvs.apps.twitter.service.Service" relationship="TO_ONE">
+      <point x="0.0" y="-51.0" />
+      <point x="925.25" y="132.0" />
+      <point x="871.947619047619" y="132.0" />
+      <point x="94.33333333333331" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.dao.helper.HttpHelper" relationship="DEPENDENCY">
+      <point x="-57.0" y="-39.5" />
+      <point x="556.5714285714284" y="295.0" />
+      <point x="240.5" y="295.0" />
+      <point x="240.5" y="122.0" />
+      <point x="234.947619047619" y="122.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.dao.TwitterDao" target="ca.jrvs.apps.twitter.dao.CrdDao" relationship="REALIZATION">
+      <point x="70.0" y="-51.0" />
+      <point x="426.0" y="132.0" />
+      <point x="415.10238095238105" y="132.0" />
+      <point x="-59.666666666666664" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.service.TwitterService" target="ca.jrvs.apps.twitter.dao.CrdDao" relationship="TO_ONE">
+      <point x="0.0" y="-51.0" />
+      <point x="623.5" y="132.0" />
+      <point x="534.4357142857144" y="132.0" />
+      <point x="59.66666666666666" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper" target="ca.jrvs.apps.twitter.dao.helper.HttpHelper" relationship="REALIZATION">
+      <point x="0.0" y="-39.5" />
+      <point x="115.0" y="132.0" />
+      <point x="158.28095238095233" y="132.0" />
+      <point x="-76.66666666666669" y="39.5" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterController" target="ca.jrvs.apps.twitter.controller.Controller" relationship="REALIZATION">
+      <point x="92.0" y="-51.0" />
+      <point x="1017.25" y="132.0" />
+      <point x="985.1142857142858" y="132.0" />
+      <point x="-92.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.service.TwitterService" target="ca.jrvs.apps.twitter.dao.CrdDao" relationship="DEPENDENCY">
+      <point x="-94.33333333333331" y="-51.0" />
+      <point x="529.1666666666667" y="132.0" />
+      <point x="471.5" y="132.0" />
+      <point x="471.5" y="122.0" />
+      <point x="474.76904761904774" y="122.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.service.Service" relationship="DEPENDENCY">
+      <point x="19.0" y="-39.5" />
+      <point x="632.5714285714284" y="275.0" />
+      <point x="775.5" y="275.0" />
+      <point x="775.5" y="122.0" />
+      <point x="777.6142857142858" y="122.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterController" target="ca.jrvs.apps.twitter.service.Service" relationship="DEPENDENCY">
+      <point x="-92.0" y="-51.0" />
+      <point x="833.25" y="132.0" />
+      <point x="775.5" y="132.0" />
+      <point x="775.5" y="122.0" />
+      <point x="777.6142857142858" y="122.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.dao.CrdDao" relationship="DEPENDENCY">
+      <point x="-19.0" y="-39.5" />
+      <point x="594.5714285714284" y="275.0" />
+      <point x="471.5" y="275.0" />
+      <point x="471.5" y="122.0" />
+      <point x="474.76904761904774" y="122.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.controller.TwitterController" relationship="CREATE">
+      <point x="38.0" y="-39.5" />
+      <point x="651.5714285714284" y="285.0" />
+      <point x="925.25" y="285.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.controller.Controller" relationship="TO_ONE">
+      <point x="76.0" y="-39.5" />
+      <point x="689.5714285714284" y="305.0" />
+      <point x="1103.0595238095239" y="305.0" />
+      <point x="1103.0595238095239" y="132.0" />
+      <point x="1169.1142857142859" y="132.0" />
+      <point x="92.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.dao.TwitterDao" target="ca.jrvs.apps.twitter.dao.helper.HttpHelper" relationship="TO_ONE">
+      <point x="0.0" y="-51.0" />
+      <point x="356.0" y="132.0" />
+      <point x="311.6142857142857" y="132.0" />
+      <point x="76.66666666666669" y="39.5" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.dao.helper.TwitterHttpHelper" relationship="CREATE">
+      <point x="-76.0" y="-39.5" />
+      <point x="537.5714285714284" y="305.0" />
+      <point x="115.0" y="305.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.service.TwitterService" relationship="CREATE">
+      <point x="0.0" y="-39.5" />
+      <point x="613.5714285714284" y="305.0" />
+      <point x="623.5" y="305.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.controller.Controller" relationship="DEPENDENCY">
+      <point x="57.0" y="-39.5" />
+      <point x="670.5714285714284" y="295.0" />
+      <point x="1092.0595238095239" y="295.0" />
+      <point x="1092.0595238095239" y="132.0" />
+      <point x="1077.1142857142859" y="132.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.service.TwitterService" target="ca.jrvs.apps.twitter.service.Service" relationship="REALIZATION">
+      <point x="94.33333333333331" y="-51.0" />
+      <point x="717.8333333333333" y="132.0" />
+      <point x="683.2809523809524" y="132.0" />
+      <point x="-94.33333333333333" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.controller.TwitterCLIApp" target="ca.jrvs.apps.twitter.dao.TwitterDao" relationship="CREATE">
+      <point x="-38.0" y="-39.5" />
+      <point x="575.5714285714284" y="285.0" />
+      <point x="356.0" y="285.0" />
+      <point x="0.0" y="51.0" />
+    </edge>
+    <edge source="ca.jrvs.apps.twitter.dao.TwitterDao" target="ca.jrvs.apps.twitter.dao.helper.HttpHelper" relationship="DEPENDENCY">
+      <point x="-70.0" y="-51.0" />
+      <point x="286.0" y="132.0" />
+      <point x="240.5" y="132.0" />
+      <point x="240.5" y="122.0" />
+      <point x="234.947619047619" y="122.0" />
+      <point x="0.0" y="39.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5555615843733044" showDependencies="true" x="716.2930950288114" y="413.8953999414005" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>public</VISIBILITY>
+</Diagram>
+

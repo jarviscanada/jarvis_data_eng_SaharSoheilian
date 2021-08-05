@@ -13,12 +13,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.springframework.beans.factory.annotation.Autowired;
 
+@org.springframework.stereotype.Service
 public class TwitterService implements Service {
 
   private CrdDao dao;
   private static final int TWEET_MAX_LENGTH = 140;
 
+  @Autowired
   public TwitterService(CrdDao dao) {
     this.dao = dao;
   }
